@@ -21,9 +21,9 @@ app.use(bodyParser.json({type:'application/vnd.api+json'}));
 app.use(express.static('./public'));
 
 // -------------------------------------------------
-
+var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost';
 // MongoDB Configuration configuration (Change this URL to your own DB)
-mongoose.connect('mongodb://localhost');
+mongoose.connect(MONGODB_URI);
 var db = mongoose.connection;
 
 db.on('error', function (err) {
