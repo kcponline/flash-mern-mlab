@@ -3,7 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-
+require('dotenv').config();
 //Require Click Schema
 var Click = require('./models/click.js');
 
@@ -21,9 +21,9 @@ app.use(bodyParser.json({type:'application/vnd.api+json'}));
 app.use(express.static('./public'));
 
 // -------------------------------------------------
-var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost';
+var dbKey = process.env.MONGODB_URI;
 // MongoDB Configuration configuration (Change this URL to your own DB)
-mongoose.connect(MONGODB_URI);
+mongoose.connect(dbKey);
 var db = mongoose.connection;
 
 db.on('error', function (err) {
